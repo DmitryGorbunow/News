@@ -11,7 +11,7 @@ class MapViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = UIColor(named: "NABackground")
         // Do any additional setup after loading the view.
     }
     

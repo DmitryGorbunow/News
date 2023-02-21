@@ -8,22 +8,106 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
+    
+    private let profileImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "ProfileImage")
+        imageView.layer.cornerRadius = 50
+        imageView.clipsToBounds = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    private let nameLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = UIColor(named: "NALightBlue")
+        label.text = "Дмитрий"
+        label.textColor = UIColor(named: "NATextGray")
+        label.layer.cornerRadius = 20
+        label.clipsToBounds = true
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let emailLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = UIColor(named: "NALightBlue")
+        label.text = "dmitry.gorbunow@gmail.com"
+        label.textColor = UIColor(named: "NATextGray")
+        label.layer.cornerRadius = 20
+        label.clipsToBounds = true
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var logOutButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Выйти", for: .normal)
+        button.setTitleColor(UIColor(named: "NATextRed"), for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setupView()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setupView() {
+        view.backgroundColor = .systemBackground
+        title = "Профиль"
+        view.backgroundColor = UIColor(named: "NABackground")
+        
+        view.addSubview(profileImage)
+        view.addSubview(nameLabel)
+        view.addSubview(emailLabel)
+        view.addSubview(logOutButton)
+        
+        logOutButton.addTarget(self, action: #selector(didTapLogOut), for: .touchUpInside)
+        
+        setupConstraints()
     }
-    */
+    
+    private func setupConstraints() {
+        NSLayoutConstraint.activate([
+            profileImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 21),
+            profileImage.heightAnchor.constraint(equalToConstant: 100),
+            profileImage.widthAnchor.constraint(equalToConstant: 100),
+            profileImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            nameLabel.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 15),
+            nameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 38),
+            nameLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -37),
+            nameLabel.heightAnchor.constraint(equalToConstant: 44),
+            
+            emailLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 15),
+            emailLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 38),
+            emailLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -37),
+            emailLabel.heightAnchor.constraint(equalToConstant: 44),
+            
+            logOutButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 142),
+            logOutButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -142),
+            logOutButton.heightAnchor.constraint(equalToConstant: 22),
+            logOutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30)
+        ])
+    }
+    
+    @objc private func didTapLogOut() {
+        AuthService.shared.signOut { [weak self] error in
+            guard let self = self else { return }
+            
+            if let error = error {
+                AlertManager.showLogoutError(on: self, with: error)
+                return
+            }
+            
+            if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
+                sceneDelegate.checkAuthentication()
+            }
+        }
+    }
 
 }

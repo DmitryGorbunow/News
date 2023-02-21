@@ -8,9 +8,12 @@
 import UIKit
 
 class NewsViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor(named: "NABackground")
+        title = "Новости"
+//        navigationController?.navigationBar.prefersLargeTitles = true
 
         // Do any additional setup after loading the view.
     }

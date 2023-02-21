@@ -11,7 +11,8 @@ class FavoriteViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        title = "Избранное"
+        view.backgroundColor = UIColor(named: "NABackground")
         // Do any additional setup after loading the view.
     }
     
