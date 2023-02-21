@@ -9,6 +9,7 @@ import UIKit
 
 class SignUpViewController: UIViewController {
     
+    private let usernameField = CustomTextField(fieldType: .username)
     private let emailField = CustomTextField(fieldType: .email)
     private let passwordField = CustomTextField(fieldType: .password)
     
@@ -46,11 +47,13 @@ class SignUpViewController: UIViewController {
         passwordField.translatesAutoresizingMaskIntoConstraints = false
         signInButton.translatesAutoresizingMaskIntoConstraints = false
         backToSignInButton.translatesAutoresizingMaskIntoConstraints = false
+        usernameField.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(emailField)
         view.addSubview(passwordField)
         view.addSubview(signInButton)
         view.addSubview(signUpStack)
+        view.addSubview(usernameField)
         signUpStack.addArrangedSubview(noAccountLabel)
         signUpStack.addArrangedSubview(backToSignInButton)
         setupConstraints()
@@ -58,7 +61,12 @@ class SignUpViewController: UIViewController {
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            emailField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 45),
+            usernameField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 45),
+            usernameField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 38),
+            usernameField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -37),
+            usernameField.heightAnchor.constraint(equalToConstant: 44),
+            
+            emailField.topAnchor.constraint(equalTo: usernameField.bottomAnchor, constant: 15),
             emailField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 38),
             emailField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -37),
             emailField.heightAnchor.constraint(equalToConstant: 44),
@@ -74,8 +82,8 @@ class SignUpViewController: UIViewController {
             signInButton.heightAnchor.constraint(equalToConstant: 42),
             
             signUpStack.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 20),
-            signUpStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 68),
-            signUpStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -67),
+            signUpStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            signUpStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
             signUpStack.heightAnchor.constraint(equalToConstant: 18)
         ])
     }
@@ -86,9 +94,48 @@ class SignUpViewController: UIViewController {
     }
     
     @objc private func didTapSignIn() {
-        let vc = TabBarController()
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: false, completion: nil)
+        let registerUserRequest = RegisterUserRequest(
+            username: self.usernameField.text ?? "",
+            email: self.emailField.text ?? "",
+            password: self.passwordField.text ?? ""
+        )
+        
+        if !Validator.isValidUsername(for: registerUserRequest.username) {
+            AlertManager.showInvalidUsernameAlert(on: self)
+            return
+        }
+        
+        if !Validator.isValidEmail(for: registerUserRequest.email) {
+            AlertManager.showInvalidEmailAlert(on: self)
+            return
+        }
+        
+        if !Validator.isPasswordValid(for: registerUserRequest.password) {
+            AlertManager.showInvalidPasswordAlert(on: self)
+            return
+        }
+        
+        AuthService.shared.registerUser(with: registerUserRequest) { [weak self] wasRegistered, error in
+            guard let self = self else { return }
+            
+            if let error = error {
+                AlertManager.showRegistrationErrorAlert(on: self, with: error)
+                return
+            }
+            
+            if wasRegistered {
+                if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
+                    sceneDelegate.checkAuthentication()
+                }
+            } else {
+                AlertManager.showRegistrationErrorAlert(on: self)
+            }
+            
+        }
+        
+//        let vc = TabBarController()
+//        vc.modalPresentationStyle = .fullScreen
+//        self.present(vc, animated: false, completion: nil)
     }
     
     @objc private func didTapBackToSignIn() {

@@ -21,7 +21,6 @@ class ProfileViewController: UIViewController {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = UIColor(named: "NALightBlue")
-        label.text = "Дмитрий"
         label.textColor = UIColor(named: "NATextGray")
         label.layer.cornerRadius = 20
         label.clipsToBounds = true
@@ -33,7 +32,6 @@ class ProfileViewController: UIViewController {
     private let emailLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = UIColor(named: "NALightBlue")
-        label.text = "dmitry.gorbunow@gmail.com"
         label.textColor = UIColor(named: "NATextGray")
         label.layer.cornerRadius = 20
         label.clipsToBounds = true
@@ -54,6 +52,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        getUserData()
     }
     
     private func setupView() {
@@ -95,6 +94,20 @@ class ProfileViewController: UIViewController {
         ])
     }
     
+    private func getUserData() {
+        AuthService.shared.fetchUser { [weak self] user, error in
+            guard let self = self else { return }
+            if let error = error {
+                AlertManager.showFetchingUserError(on: self, with: error)
+            }
+            
+            if let user = user {
+                self.nameLabel.text = user.username
+                self.emailLabel.text = user.email
+            }
+        }
+    }
+    
     @objc private func didTapLogOut() {
         AuthService.shared.signOut { [weak self] error in
             guard let self = self else { return }
@@ -109,5 +122,4 @@ class ProfileViewController: UIViewController {
             }
         }
     }
-
 }

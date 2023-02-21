@@ -11,6 +11,8 @@
 		D00AE54829A494AC00E4BADF /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00AE54729A494AC00E4BADF /* AuthService.swift */; };
 		D00AE54A29A4969F00E4BADF /* RegisterUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00AE54929A4969F00E4BADF /* RegisterUserRequest.swift */; };
 		D00AE54C29A4A9E300E4BADF /* LoginUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00AE54B29A4A9E300E4BADF /* LoginUserRequest.swift */; };
+		D0494F8829A4B540005064F1 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0494F8729A4B540005064F1 /* Validator.swift */; };
+		D06A1F1329A4E3CF0024D505 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06A1F1229A4E3CF0024D505 /* User.swift */; };
 		D0AFE63329A490FE004FDAFD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D0AFE63229A490FE004FDAFD /* GoogleService-Info.plist */; };
 		D0E00F9029A3B7FD009209CC /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E00F8F29A3B7FD009209CC /* CustomTextField.swift */; };
 		D0E00F9229A3BBFF009209CC /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E00F9129A3BBFF009209CC /* CustomButton.swift */; };
@@ -36,6 +38,8 @@
 		D00AE54729A494AC00E4BADF /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		D00AE54929A4969F00E4BADF /* RegisterUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserRequest.swift; sourceTree = "<group>"; };
 		D00AE54B29A4A9E300E4BADF /* LoginUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserRequest.swift; sourceTree = "<group>"; };
+		D0494F8729A4B540005064F1 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		D06A1F1229A4E3CF0024D505 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D0AFE63229A490FE004FDAFD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D0E00F8F29A3B7FD009209CC /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		D0E00F9129A3BBFF009209CC /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -108,6 +112,7 @@
 			children = (
 				D00AE54729A494AC00E4BADF /* AuthService.swift */,
 				D0E00F9529A3FAF2009209CC /* AlertManager.swift */,
+				D0494F8729A4B540005064F1 /* Validator.swift */,
 				D0FB36ED29A16C50008447D3 /* Models */,
 				D0FB36F129A16C85008447D3 /* Views */,
 				D0FB36F029A16C65008447D3 /* Controllers */,
@@ -134,6 +139,7 @@
 			children = (
 				D00AE54929A4969F00E4BADF /* RegisterUserRequest.swift */,
 				D00AE54B29A4A9E300E4BADF /* LoginUserRequest.swift */,
+				D06A1F1229A4E3CF0024D505 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -289,7 +295,9 @@
 				D0FB36F529A16D7F008447D3 /* NewsViewController.swift in Sources */,
 				D0FB36F929A16FA3008447D3 /* FavoriteViewController.swift in Sources */,
 				D0E00F9229A3BBFF009209CC /* CustomButton.swift in Sources */,
+				D0494F8829A4B540005064F1 /* Validator.swift in Sources */,
 				D0F66D4829A38C42002297D4 /* SignUpViewController.swift in Sources */,
+				D06A1F1329A4E3CF0024D505 /* User.swift in Sources */,
 				D0FB36FB29A16FEC008447D3 /* ProfileViewController.swift in Sources */,
 				D0FB36DB29A16ACF008447D3 /* SceneDelegate.swift in Sources */,
 				D00AE54829A494AC00E4BADF /* AuthService.swift in Sources */,

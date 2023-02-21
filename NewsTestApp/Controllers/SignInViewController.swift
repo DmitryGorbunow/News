@@ -77,13 +77,13 @@ class SignInViewController: UIViewController {
             signInButton.heightAnchor.constraint(equalToConstant: 42),
             
             signUpStack.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 20),
-            signUpStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 68),
-            signUpStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -67),
+            signUpStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            signUpStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
             signUpStack.heightAnchor.constraint(equalToConstant: 18),
             
             passwordResetButton.heightAnchor.constraint(equalToConstant: 18),
-            passwordResetButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 129),
-            passwordResetButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -129),
+            passwordResetButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 100),
+            passwordResetButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -100),
             passwordResetButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30)
         ])
     }
@@ -95,9 +95,35 @@ class SignInViewController: UIViewController {
     }
     
     @objc private func didTapSignIn() {
-        let vc = TabBarController()
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: false, completion: nil)
+        let loginRequest = LoginUserRequest(
+            email: self.emailField.text ?? "",
+            password: self.passwordField.text ?? ""
+        )
+        
+        if !Validator.isValidEmail(for: loginRequest.email) {
+            AlertManager.showInvalidEmailAlert(on: self)
+            return
+        }
+        
+        if !Validator.isPasswordValid(for: loginRequest.password) {
+            AlertManager.showInvalidPasswordAlert(on: self)
+            return
+        }
+        
+        AuthService.shared.signIn(with: loginRequest) { [weak self] error in
+            guard let self = self else { return }
+            
+            if let error = error {
+                AlertManager.showSignInErrorAlert(on: self, with: error)
+                return
+            }
+            
+            if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
+                sceneDelegate.checkAuthentication()
+            } else {
+                AlertManager.showSignInErrorAlert(on: self)
+            }
+        }
     }
     
     @objc private func didTapSignUp() {

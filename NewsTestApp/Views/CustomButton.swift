@@ -17,8 +17,6 @@ class CustomButton: UIButton {
     init(title: String, hasBackground: Bool, fontSize: FontSize) {
         super.init(frame: .zero)
         self.setTitle(title, for: .normal)
-        self.layer.cornerRadius = 20
-        self.layer.masksToBounds = true
         
         self.backgroundColor = hasBackground ? UIColor(named: "NABlue") : .clear
         
@@ -28,6 +26,8 @@ class CustomButton: UIButton {
         switch fontSize {
         case .big:
             self.titleLabel?.font = .systemFont(ofSize: 17, weight: .regular)
+            self.layer.cornerRadius = 20
+            self.layer.masksToBounds = true
             
         case .small:
             self.titleLabel?.font = .systemFont(ofSize: 13, weight: .bold)
