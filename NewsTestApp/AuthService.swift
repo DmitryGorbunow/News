@@ -85,5 +85,4 @@ class AuthService {
     public func fetchUser(completion: @escaping (User?, Error?) -> Void) {
         
     }
-    
 }
