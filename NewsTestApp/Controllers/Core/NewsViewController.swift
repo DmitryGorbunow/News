@@ -42,6 +42,7 @@ class NewsViewController: UIViewController {
     
     private func setupTableView() {
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
     }
@@ -70,7 +71,7 @@ class NewsViewController: UIViewController {
     }
 }
 
-extension NewsViewController: UITableViewDataSource {
+extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModels.count
     }
@@ -110,7 +111,7 @@ extension NewsViewController: UITableViewDataSource {
         vc.configure(with: viewModels[indexPath.row])
         navigationController?.pushViewController(vc, animated: true)
     }
-    
+        
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         256
     }

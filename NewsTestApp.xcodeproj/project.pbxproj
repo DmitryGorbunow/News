@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6CAD2312A1B5E257937A81D6 /* Pods_NewsTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01AF51AC3B9E1F0979E3BAC4 /* Pods_NewsTestApp.framework */; };
+		D0007C9529A9421800BB5AFE /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0007C9429A9421800BB5AFE /* Date.swift */; };
 		D00AE54829A494AC00E4BADF /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00AE54729A494AC00E4BADF /* AuthService.swift */; };
 		D00AE54A29A4969F00E4BADF /* RegisterUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00AE54929A4969F00E4BADF /* RegisterUserRequest.swift */; };
 		D00AE54C29A4A9E300E4BADF /* LoginUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00AE54B29A4A9E300E4BADF /* LoginUserRequest.swift */; };
@@ -45,6 +46,7 @@
 		01AF51AC3B9E1F0979E3BAC4 /* Pods_NewsTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewsTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ABF6AE439D81BD44D9CA92F /* Pods-NewsTestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsTestApp.debug.xcconfig"; path = "Target Support Files/Pods-NewsTestApp/Pods-NewsTestApp.debug.xcconfig"; sourceTree = "<group>"; };
 		B44716E4400A6894D29D96D3 /* Pods-NewsTestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsTestApp.release.xcconfig"; path = "Target Support Files/Pods-NewsTestApp/Pods-NewsTestApp.release.xcconfig"; sourceTree = "<group>"; };
+		D0007C9429A9421800BB5AFE /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		D00AE54729A494AC00E4BADF /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		D00AE54929A4969F00E4BADF /* RegisterUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserRequest.swift; sourceTree = "<group>"; };
 		D00AE54B29A4A9E300E4BADF /* LoginUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserRequest.swift; sourceTree = "<group>"; };
@@ -107,6 +109,14 @@
 				01AF51AC3B9E1F0979E3BAC4 /* Pods_NewsTestApp.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D0007C9329A941F300BB5AFE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D0007C9429A9421800BB5AFE /* Date.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		D0632BA029A895D900B7F5AD /* Core Data */ = {
@@ -198,6 +208,7 @@
 				D0FB36ED29A16C50008447D3 /* Models */,
 				D0FB36F129A16C85008447D3 /* Views */,
 				D0FB36F029A16C65008447D3 /* Controllers */,
+				D0007C9329A941F300BB5AFE /* Extensions */,
 				D0FB36EC29A16C34008447D3 /* Resources */,
 				D0FB36E629A16AD0008447D3 /* Info.plist */,
 				D0AFE63229A490FE004FDAFD /* GoogleService-Info.plist */,
@@ -366,6 +377,7 @@
 				D0FB36F729A16D92008447D3 /* MapViewController.swift in Sources */,
 				D00AE54C29A4A9E300E4BADF /* LoginUserRequest.swift in Sources */,
 				D0FB36F329A16D0F008447D3 /* TabBarController.swift in Sources */,
+				D0007C9529A9421800BB5AFE /* Date.swift in Sources */,
 				D00AE54A29A4969F00E4BADF /* RegisterUserRequest.swift in Sources */,
 				D0E00F9429A3C413009209CC /* ResetPasswordViewController.swift in Sources */,
 				D0FB36D929A16ACF008447D3 /* AppDelegate.swift in Sources */,

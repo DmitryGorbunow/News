@@ -18,18 +18,11 @@ class SignUpViewController: UIViewController {
     
     private lazy var noAccountLabel: UILabel = {
         let label = UILabel()
-        label.text = "У вас есть аккаунт ?"
+        label.text = "У вас есть аккаунт?"
         label.font = UIFont.systemFont(ofSize: 13)
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
-    }()
-    
-    private lazy var signUpStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        return stack
     }()
     
     override func viewDidLoad() {
@@ -52,10 +45,9 @@ class SignUpViewController: UIViewController {
         view.addSubview(emailField)
         view.addSubview(passwordField)
         view.addSubview(signInButton)
-        view.addSubview(signUpStack)
         view.addSubview(usernameField)
-        signUpStack.addArrangedSubview(noAccountLabel)
-        signUpStack.addArrangedSubview(backToSignInButton)
+        view.addSubview(noAccountLabel)
+        view.addSubview(backToSignInButton)
         setupConstraints()
     }
     
@@ -81,10 +73,13 @@ class SignUpViewController: UIViewController {
             signInButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -87),
             signInButton.heightAnchor.constraint(equalToConstant: 42),
             
-            signUpStack.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 20),
-            signUpStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-            signUpStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-            signUpStack.heightAnchor.constraint(equalToConstant: 18)
+            noAccountLabel.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 20),
+            noAccountLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            noAccountLabel.heightAnchor.constraint(equalToConstant: 18),
+            
+            backToSignInButton.topAnchor.constraint(equalTo: noAccountLabel.bottomAnchor, constant: 10),
+            backToSignInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            backToSignInButton.heightAnchor.constraint(equalToConstant: 18)
         ])
     }
     

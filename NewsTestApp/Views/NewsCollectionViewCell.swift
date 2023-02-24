@@ -28,7 +28,6 @@ class NewsCollectionViewCell: UICollectionViewCell {
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 13, weight: .regular)
-        label.text = "23 февраля"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -113,10 +112,11 @@ class NewsCollectionViewCell: UICollectionViewCell {
     // cell configuration
     func configure(with viewModel: NewsTestApp) {
         newsTitleLabel.text = viewModel.title
-        dateLabel.text = viewModel.publishedAt
         if let data = viewModel.imageData {
             newsImageView.image = UIImage(data: data)
         }
+        guard let date = viewModel.publishedAt?.convertIntoDate() else { return }
+        dateLabel.text = date.format("dd MMMM")
     }
     
     @objc func didTapFavorite() {

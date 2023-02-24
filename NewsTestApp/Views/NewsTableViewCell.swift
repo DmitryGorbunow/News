@@ -28,7 +28,6 @@ class NewsTableViewCell: UITableViewCell {
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 13, weight: .regular)
-        label.text = "23 февраля"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -134,7 +133,6 @@ class NewsTableViewCell: UITableViewCell {
     func configure(with viewModel: NewsTableViewCellViewModel) {
         newsTitleLabel.text = viewModel.title
         subtitleLabel.text = viewModel.subtitle
-        dateLabel.text = viewModel.publishedAt
         
         if let data = viewModel.imageData {
             newsImageView.image = UIImage(data: data)
@@ -150,6 +148,9 @@ class NewsTableViewCell: UITableViewCell {
                 
             }.resume()
         }
+        
+        guard let date = viewModel.publishedAt.convertIntoDate() else { return }
+        dateLabel.text = date.format("dd MMMM")
     }
     
     func setupFavoriteButton() {
