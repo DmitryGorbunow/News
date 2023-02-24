@@ -16,6 +16,7 @@ class CoreDataManager {
     
     private init() {}
     
+    // adding an object to the database
     func createItem(title: String, publishedAt: String, imageData: Data?) {
         let newItem = NewsTestApp(context: context)
         newItem.title = title
@@ -29,6 +30,7 @@ class CoreDataManager {
         }
     }
     
+    // deleting an object from the database
     func deleteItem(item: NewsTestApp) {
         context.delete(item)
         do {

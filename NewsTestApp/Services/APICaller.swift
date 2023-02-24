@@ -10,12 +10,14 @@ import Foundation
 final class APICaller {
     static let shared = APICaller()
     
+    // URL String
     struct Constants {
         static let topHeadlinesURL = URL(string: "https://newsapi.org/v2/top-headlines?country=ru&apiKey=e9ef48495a24444ca4a018f6966767b4")
     }
     
     private init() {}
     
+    // getting news data from the server
     public func getTopStories(completion: @escaping (Result<[Article], Error>) -> Void) {
         guard let url = Constants.topHeadlinesURL else {
             return

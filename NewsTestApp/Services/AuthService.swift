@@ -53,6 +53,7 @@ class AuthService {
         }
     }
     
+    // the method for logging in to the account
     public func signIn(with userRequest: LoginUserRequest, completion: @escaping (Error?)->Void) {
         Auth.auth().signIn(
             withEmail: userRequest.email,
@@ -67,6 +68,7 @@ class AuthService {
         }
     }
     
+    // method for registering a new user
     public func signOut(completion: @escaping (Error?)->Void) {
         do {
             try Auth.auth().signOut()
@@ -76,12 +78,15 @@ class AuthService {
         }
     }
     
+    // method for password reset
     public func forgotPassword(with email: String, completion: @escaping (Error?) -> Void) {
         Auth.auth().sendPasswordReset(withEmail: email) { error in
             completion(error)
         }
     }
     
+    
+    // method for getting user data from the server
     public func fetchUser(completion: @escaping (User?, Error?) -> Void) {
         guard let userUID = Auth.auth().currentUser?.uid else { return }
         let db = Firestore.firestore()

@@ -11,6 +11,7 @@ class NewsTableViewCell: UITableViewCell {
     
     static let identifier = "NewsTableViewCell"
     
+    // closure for transmitting a user action to NewsViewController
     var favorite : (() -> Void)? = nil
     
     var isFavorite = false
@@ -129,6 +130,7 @@ class NewsTableViewCell: UITableViewCell {
         subtitleLabel.text = nil
     }
     
+    // cell configuration
     func configure(with viewModel: NewsTableViewCellViewModel) {
         newsTitleLabel.text = viewModel.title
         subtitleLabel.text = viewModel.subtitle

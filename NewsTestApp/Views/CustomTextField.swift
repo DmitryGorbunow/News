@@ -9,6 +9,8 @@ import UIKit
 
 class CustomTextField: UITextField {
     
+    // constructor for different types of text fields
+    
     enum CustomTextFieldType {
         case username
         case email

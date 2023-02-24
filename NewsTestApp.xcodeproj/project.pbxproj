@@ -131,6 +131,48 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		D08FFE1529A92EC600CEAF5E /* LoginUp */ = {
+			isa = PBXGroup;
+			children = (
+				D00AE54929A4969F00E4BADF /* RegisterUserRequest.swift */,
+				D00AE54B29A4A9E300E4BADF /* LoginUserRequest.swift */,
+				D06A1F1229A4E3CF0024D505 /* User.swift */,
+			);
+			path = LoginUp;
+			sourceTree = "<group>";
+		};
+		D08FFE1629A92ED700CEAF5E /* API */ = {
+			isa = PBXGroup;
+			children = (
+				D06A1F1729A4FBF00024D505 /* APIResponse.swift */,
+				D06A1F1B29A559880024D505 /* NewsTableViewCellViewModel.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		D08FFE1729A92F0500CEAF5E /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				D0FB36F429A16D7F008447D3 /* NewsViewController.swift */,
+				D06A1F1D29A76CAE0024D505 /* FullNewsViewController.swift */,
+				D0FB36F629A16D92008447D3 /* MapViewController.swift */,
+				D0FB36F829A16FA3008447D3 /* FavoriteViewController.swift */,
+				D0FB36FA29A16FEC008447D3 /* ProfileViewController.swift */,
+				D0FB36F229A16D0F008447D3 /* TabBarController.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		D08FFE1829A92F1A00CEAF5E /* LoginUp */ = {
+			isa = PBXGroup;
+			children = (
+				D0FB36DC29A16ACF008447D3 /* SignInViewController.swift */,
+				D0F66D4729A38C42002297D4 /* SignUpViewController.swift */,
+				D0E00F9329A3C413009209CC /* ResetPasswordViewController.swift */,
+			);
+			path = LoginUp;
+			sourceTree = "<group>";
+		};
 		D0FB36CC29A16ACF008447D3 = {
 			isa = PBXGroup;
 			children = (
@@ -178,11 +220,8 @@
 			isa = PBXGroup;
 			children = (
 				D0632BA029A895D900B7F5AD /* Core Data */,
-				D00AE54929A4969F00E4BADF /* RegisterUserRequest.swift */,
-				D00AE54B29A4A9E300E4BADF /* LoginUserRequest.swift */,
-				D06A1F1229A4E3CF0024D505 /* User.swift */,
-				D06A1F1729A4FBF00024D505 /* APIResponse.swift */,
-				D06A1F1B29A559880024D505 /* NewsTableViewCellViewModel.swift */,
+				D08FFE1529A92EC600CEAF5E /* LoginUp */,
+				D08FFE1629A92ED700CEAF5E /* API */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -190,15 +229,8 @@
 		D0FB36F029A16C65008447D3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D0FB36F429A16D7F008447D3 /* NewsViewController.swift */,
-				D06A1F1D29A76CAE0024D505 /* FullNewsViewController.swift */,
-				D0FB36F629A16D92008447D3 /* MapViewController.swift */,
-				D0FB36F829A16FA3008447D3 /* FavoriteViewController.swift */,
-				D0FB36FA29A16FEC008447D3 /* ProfileViewController.swift */,
-				D0FB36DC29A16ACF008447D3 /* SignInViewController.swift */,
-				D0F66D4729A38C42002297D4 /* SignUpViewController.swift */,
-				D0E00F9329A3C413009209CC /* ResetPasswordViewController.swift */,
-				D0FB36F229A16D0F008447D3 /* TabBarController.swift */,
+				D08FFE1729A92F0500CEAF5E /* Core */,
+				D08FFE1829A92F1A00CEAF5E /* LoginUp */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

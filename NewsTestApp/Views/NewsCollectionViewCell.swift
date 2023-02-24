@@ -11,6 +11,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "NewsCollectionViewCell"
     
+    // closure for transmitting a user action to FullNewsViewController
     var favorite : (() -> Void)? = nil
     
     var isFavorite = false
@@ -109,6 +110,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
         newsTitleLabel.text = nil
     }
     
+    // cell configuration
     func configure(with viewModel: NewsTestApp) {
         newsTitleLabel.text = viewModel.title
         dateLabel.text = viewModel.publishedAt

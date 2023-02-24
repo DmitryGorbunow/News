@@ -20,10 +20,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private func setupWindow(with scene: UIScene) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
+        window.overrideUserInterfaceStyle = .light
         self.window = window
         self.window?.makeKeyAndVisible()
     }
     
+    // verification of user authorization. if there is authorization, the TabBarController is set by the root controller, if not, then SignInViewController is set
     public func checkAuthentication() {
         if Auth.auth().currentUser == nil {
             let vc = SignInViewController()

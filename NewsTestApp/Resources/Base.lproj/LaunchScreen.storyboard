@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,15 +13,43 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ellipse 18" translatesAutoresizingMaskIntoConstraints="NO" id="xeC-YO-bYB">
+                                <rect key="frame" x="87" y="316.66666666666669" width="179" height="179"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="179" id="k81-aN-d6N"/>
+                                    <constraint firstAttribute="height" constant="179" id="wpD-fn-fb3"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ellipse 19" translatesAutoresizingMaskIntoConstraints="NO" id="G8n-wT-loB">
+                                <rect key="frame" x="175" y="404.66666666666669" width="133" height="133.00000000000006"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ellipse 20" translatesAutoresizingMaskIntoConstraints="NO" id="h90-oN-Sfb">
+                                <rect key="frame" x="145.66666666666666" y="500" width="42" height="42"/>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="xeC-YO-bYB" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-20" id="9gR-W1-QoV"/>
+                            <constraint firstItem="G8n-wT-loB" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="45" id="OEy-5R-BBQ"/>
+                            <constraint firstItem="h90-oN-Sfb" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="95" id="nae-S9-68c"/>
+                            <constraint firstItem="h90-oN-Sfb" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="-30" id="tCe-WR-KBa"/>
+                            <constraint firstItem="G8n-wT-loB" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="45" id="ui9-fR-rrt"/>
+                            <constraint firstItem="xeC-YO-bYB" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="-20" id="vIG-n1-EIO"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52.671755725190835" y="374.64788732394368"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Ellipse 18" width="187" height="187"/>
+        <image name="Ellipse 19" width="133" height="133"/>
+        <image name="Ellipse 20" width="42" height="42"/>
+    </resources>
 </document>

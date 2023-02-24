@@ -9,6 +9,8 @@ import UIKit
 
 class CustomButton: UIButton {
     
+    // constructor for different types of buttons
+    
     enum FontSize {
         case big
         case small
