@@ -20,6 +20,7 @@ class ProfileViewController: UIViewController {
     
     private let nameLabel: UILabel = {
         let label = UILabel()
+        label.text = "loading..."
         label.backgroundColor = UIColor(named: "NALightBlue")
         label.textColor = UIColor(named: "NATextGray")
         label.layer.cornerRadius = 20
@@ -31,6 +32,7 @@ class ProfileViewController: UIViewController {
     
     private let emailLabel: UILabel = {
         let label = UILabel()
+        label.text = "loading..."
         label.backgroundColor = UIColor(named: "NALightBlue")
         label.textColor = UIColor(named: "NATextGray")
         label.layer.cornerRadius = 20
