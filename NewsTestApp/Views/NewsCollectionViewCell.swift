@@ -52,6 +52,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
+        imageView.image = UIImage(named: "news")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -104,7 +105,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        newsImageView.image = nil
+//        newsImageView.image = nil
         dateLabel.text = nil
         newsTitleLabel.text = nil
     }

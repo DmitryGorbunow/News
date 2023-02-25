@@ -9,16 +9,10 @@ import UIKit
 
 class FullNewsViewController: UIViewController {
     
-    private lazy var scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        return scrollView
-    }()
-    private lazy var contentView: UIView = {
-        let contentView = UIView()
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        return contentView
-    }()
+    // closure for transmitting a user action
+    var favorite : (() -> Void)? = nil
+    
+    var isFavorite = false
     
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
@@ -55,6 +49,9 @@ class FullNewsViewController: UIViewController {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
+        imageView.image = UIImage(named: "news")
+        imageView.layer.cornerRadius = 22
+        imageView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -69,14 +66,12 @@ class FullNewsViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.tintColor = UIColor(named: "NABlue")
         view.backgroundColor = UIColor(named: "NABackground")
-        
-        view.addSubview(scrollView)
-        scrollView.addSubview(contentView)
-        contentView.addSubview(dateLabel)
-        contentView.addSubview(favoriteButton)
-        contentView.addSubview(newsTitleLabel)
-        contentView.addSubview(subtitleLabel)
-        contentView.addSubview(newsImageView)
+        setupFavoriteButton()
+        view.addSubview(dateLabel)
+        view.addSubview(favoriteButton)
+        view.addSubview(newsTitleLabel)
+        view.addSubview(subtitleLabel)
+        view.addSubview(newsImageView)
        
         setupConstraints()
     }
@@ -84,24 +79,13 @@ class FullNewsViewController: UIViewController {
     private func setupConstraints() {
         
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            
-            newsImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            newsImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            newsImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            newsImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            newsImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            newsImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             newsImageView.heightAnchor.constraint(equalToConstant: 260),
             
             dateLabel.topAnchor.constraint(equalTo: newsImageView.bottomAnchor, constant: 9),
-            dateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 18),
+            dateLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 18),
             dateLabel.heightAnchor.constraint(equalToConstant: 18),
             dateLabel.widthAnchor.constraint(equalToConstant: 100),
             
@@ -111,12 +95,12 @@ class FullNewsViewController: UIViewController {
             favoriteButton.widthAnchor.constraint(equalToConstant: 40),
             
             newsTitleLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 11),
-            newsTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            newsTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            newsTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            newsTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             
             subtitleLabel.topAnchor.constraint(equalTo: newsTitleLabel.bottomAnchor, constant: 2),
-            subtitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            subtitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            subtitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            subtitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
         ])
     }
     
@@ -157,8 +141,14 @@ class FullNewsViewController: UIViewController {
         dateLabel.text = date.format("dd MMMM")
     }
     
+    func setupFavoriteButton() {
+        isFavorite ? favoriteButton.setImage(UIImage(named: "didTapFavorite"), for: .normal) : favoriteButton.setImage(UIImage(named: "favorite"), for: .normal)
+    }
+    
     @objc func didTapFavorite() {
-        
+        if let buttonAction = self.favorite {
+            buttonAction()
+        }
     }
 }
 

@@ -60,6 +60,7 @@ class NewsTableViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
+        imageView.image = UIImage(named: "news")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -123,7 +124,7 @@ class NewsTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        newsImageView.image = nil
+//        newsImageView.image = nil
         dateLabel.text = nil
         newsTitleLabel.text = nil
         subtitleLabel.text = nil
@@ -147,6 +148,8 @@ class NewsTableViewCell: UITableViewCell {
                 }
                 
             }.resume()
+        } else {
+            self.newsImageView.image = UIImage(named: "news")
         }
         
         guard let date = viewModel.publishedAt.convertIntoDate() else { return }

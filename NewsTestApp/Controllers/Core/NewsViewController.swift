@@ -9,9 +9,6 @@ import UIKit
 
 class NewsViewController: UIViewController {
     
-    // core data context
-    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
     private lazy var tableView: UITableView = {
         let table = UITableView()
         table.register(NewsTableViewCell.self, forCellReuseIdentifier: NewsTableViewCell.identifier)
@@ -69,6 +66,52 @@ class NewsViewController: UIViewController {
             }
         }
     }
+    
+    // deleting an article from favorites
+    private func deleteFromFavorites(indexPath: IndexPath) {
+        var array = [NewsTestApp]()
+        do {
+            array = try CoreDataManager.shared.context.fetch(NewsTestApp.fetchRequest())
+        } catch {
+            // error
+        }
+        
+        for i in array {
+            if i.title == viewModels[indexPath.row].title {
+                CoreDataManager.shared.deleteItem(item: i)
+            }
+        }
+    }
+    
+//        reaction to clicking the favorites button in the cell by the user and
+//        saving the selected article in Core Data
+    private func changeFavoriteStatus(indexPath: IndexPath, cell: NewsTableViewCell) {
+        cell.favorite = { [weak self] in
+            guard let self = self else { return }
+            
+            let vc = FullNewsViewController()
+            vc.isFavorite.toggle()
+            vc.setupFavoriteButton()
+            
+            if !cell.isFavorite {
+                CoreDataManager.shared.createItem (
+                    title: self.viewModels[indexPath.row].title,
+                    publishedAt: self.viewModels[indexPath.row].publishedAt,
+                    imageData: self.viewModels[indexPath.row].imageData ?? nil
+                )
+                cell.isFavorite.toggle()
+                cell.setupFavoriteButton()
+                
+            } else {
+                cell.isFavorite.toggle()
+                cell.setupFavoriteButton()
+                
+                vc.isFavorite.toggle()
+                vc.setupFavoriteButton()
+                self.deleteFromFavorites(indexPath: indexPath)
+            }
+        }
+    }
 }
 
 extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
@@ -81,26 +124,7 @@ extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
             fatalError()
         }
         cell.configure(with: viewModels[indexPath.row])
-        
-        
-//        reaction to clicking the favorites button in the cell by the user and
-//        saving the selected article in Core Data
-        cell.favorite = { [weak self] in
-            guard let self = self else { return }
-            
-            if !cell.isFavorite {
-                CoreDataManager.shared.createItem (
-                    title: self.viewModels[indexPath.row].title,
-                    publishedAt: self.viewModels[indexPath.row].publishedAt,
-                    imageData: self.viewModels[indexPath.row].imageData ?? nil
-                )
-                cell.isFavorite.toggle()
-                cell.setupFavoriteButton()
-            } else {
-                cell.isFavorite.toggle()
-                cell.setupFavoriteButton()
-            }
-        }
+        changeFavoriteStatus(indexPath: indexPath, cell: cell)
         
         return cell
     }
@@ -110,6 +134,24 @@ extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
         let vc = FullNewsViewController()
         vc.configure(with: viewModels[indexPath.row])
         navigationController?.pushViewController(vc, animated: true)
+        
+        vc.favorite = { [weak self] in
+            guard let self = self else { return }
+            
+            if !vc.isFavorite {
+                CoreDataManager.shared.createItem (
+                    title: self.viewModels[indexPath.row].title,
+                    publishedAt: self.viewModels[indexPath.row].publishedAt,
+                    imageData: self.viewModels[indexPath.row].imageData ?? nil
+                )
+                vc.isFavorite.toggle()
+                vc.setupFavoriteButton()
+            } else {
+                vc.isFavorite.toggle()
+                vc.setupFavoriteButton()
+                self.deleteFromFavorites(indexPath: indexPath)
+            }
+        }
     }
         
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
